@@ -12,7 +12,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import java.util.Comparator;
 
-
 class Controller {
     private TableView<Person> table = new TableView<>();
     private TextField filterField = new TextField();

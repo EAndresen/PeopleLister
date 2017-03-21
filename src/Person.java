@@ -21,8 +21,6 @@ public class Person {
         this.wage = new SimpleIntegerProperty(wageIn);
         this.age = new SimpleIntegerProperty(ageIn);
         this.skills = new SimpleStringProperty(skillsIn);
-
-
     }
 
     //Get functions
