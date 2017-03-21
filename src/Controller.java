@@ -25,8 +25,7 @@ class Controller {
     private Button findYoungestButton = new Button("Find youngest");
     private Button findRichestButton = new Button("Find richest");
     private Button sortByNameButton = new Button("Sort by first name");
-
-    String firstNames = "";
+    private String firstNames = "";
 
     private final ObservableList<Person> data =
             FXCollections.observableArrayList(
@@ -179,13 +178,20 @@ class Controller {
                 }
                 return false; // Does not match.
             });
-            //Filter list and putting it to table.
-            SortedList<Person> sortedData = new SortedList<>(filteredData);
-            sortedData.comparatorProperty().bind(table.comparatorProperty());
-            table.setItems(sortedData);
+
         });
 
+        //Filter list and putting it to table.
+        SortedList<Person> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
 
+        //Collecting nodes and placing the table on the grid
+        table.getColumns().addAll(firstNameCol, lastNameCol, professionCol, wageCol, ageCol, skillsCol);
+        table.setMaxHeight(250);
+        gridPane.add(table, 0, 1);
+        gridPane.add(filterField, 0, 0);
+        gridPane.add(textArea, 0, 2);
     }
 
     //Function to load top border
