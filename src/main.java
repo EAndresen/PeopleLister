@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 
 
 public class main extends Application {
-    private TopBar topBar = new TopBar();
-    private PeopleTableView peopleTableView = new PeopleTableView();
+//    private TopBar topBar = new TopBar();
+    private Controller controller = new Controller();
 
 
     public static void main (String[] args) {
@@ -26,8 +26,9 @@ public class main extends Application {
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
 
-        topBar.loadTopBar(root);
-        peopleTableView.loadTable(gridPane);
+//        topBar.loadTopBar(root);
+        controller.loadTable(gridPane);
+        controller.loadTopBar(root);
 
 
         root.setCenter(gridPane);
