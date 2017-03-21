@@ -29,13 +29,10 @@ public class main extends Application {
         //Loading top bar to main grid.
         controller.loadTopBar(root);
 
-
         //Setting title and main stage.
         root.setCenter(gridPane);
         primaryStage.setTitle("PeopleLister");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
-
 }
