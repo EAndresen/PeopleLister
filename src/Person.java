@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 
 public class Person {
 
+    //Instance variables
     private final StringProperty firstName;
     private final StringProperty lastName;
     private final StringProperty profession;
@@ -12,6 +13,7 @@ public class Person {
     private final IntegerProperty age;
     private final StringProperty skills;
 
+    //Constructor
     Person(String fName, String lName, String professionIn, int wageIn, int ageIn, String skillsIn) {
         this.firstName = new SimpleStringProperty(fName);
         this.lastName = new SimpleStringProperty(lName);
@@ -23,6 +25,7 @@ public class Person {
 
     }
 
+    //Get functions
     public String getFirstName() {
         return firstName.get();
     }

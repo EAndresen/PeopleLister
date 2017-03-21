@@ -5,13 +5,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-
-
 public class main extends Application {
-//    private TopBar topBar = new TopBar();
     private Controller controller = new Controller();
-
 
     public static void main (String[] args) {
         launch(args);
@@ -19,6 +14,8 @@ public class main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        //Creating main grid and setting height and with.
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 762, 450, Color.LIGHTGRAY);
         GridPane gridPane = new GridPane();
@@ -26,11 +23,14 @@ public class main extends Application {
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
 
-//        topBar.loadTopBar(root);
+        //Loading table to main grid
         controller.loadTable(gridPane);
+
+        //Loading top bar to main grid.
         controller.loadTopBar(root);
 
 
+        //Setting title and main stage.
         root.setCenter(gridPane);
         primaryStage.setTitle("PeopleLister");
         primaryStage.setScene(scene);

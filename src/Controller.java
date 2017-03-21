@@ -1,4 +1,3 @@
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -11,8 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
-import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -34,11 +31,7 @@ class Controller {
                     new Person("Carl XIV Gustaf", "Bernadotte", "King", 13400000, 70, "To role"),
                     new Person("Bob", "Dylan", "Singer-songwriter, artist, writer", 8330000, 75, "Singing, guitar, harmonica, keyboard "),
                     new Person("Joel", "Lundqvist", "Hockey player", 300000, 35, "Center, tackle Djurgården")
-
             );
-
-
-
 
     void loadTable(GridPane gridPane) {
 
@@ -85,7 +78,6 @@ class Controller {
         wageCol.setSortable(false);
         ageCol.setSortable(false);
         skillsCol.setSortable(false);
-
 
         //Sort people by name, store them and print to textArea.
         sortByNameButton.setOnAction((ActionEvent event) -> {
@@ -159,7 +151,6 @@ class Controller {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
