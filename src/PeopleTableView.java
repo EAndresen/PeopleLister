@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 
 class PeopleTableView {
-    public TableView<Person> table = new TableView<>();
+    private TableView<Person> table = new TableView<>();
     private TextField filterField = new TextField();
     private TextArea textArea = new TextArea();
 
@@ -23,7 +23,7 @@ class PeopleTableView {
 
             );
 
-    public void loadTable(GridPane gridPane) {
+    void loadTable(GridPane gridPane) {
         table.setEditable(true);
 
         TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("First Name");
