@@ -19,6 +19,8 @@ class TopBar {
         topBar.setAlignment(Pos.CENTER);
         topBar.getChildren().addAll(findOldestButton, findYoungestButton, findRichestButton, sortByNameButton);
 
+
+
         root.setTop(topBar);
     }
 
