@@ -5,6 +5,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 public class main extends Application {
     private Controller controller = new Controller();
 
@@ -24,7 +25,7 @@ public class main extends Application {
         gridPane.setPadding(new Insets(0, 10, 10, 10));
 
         //Loading table to main grid
-        controller.loadTable(gridPane, root);
+        controller.loadContent(gridPane, root);
 
         //Setting title and main stage.
         root.setCenter(gridPane);

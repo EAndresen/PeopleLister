@@ -1,7 +1,5 @@
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 import java.util.Comparator;
@@ -13,7 +11,7 @@ public class Sort {
     private String oldestPearsonLastName;
 
     //Finds richest pearson
-    void findRichest(ObservableList<Person> personData, SortedList<Person> sortedData, TableColumn<Person, String> firstNameCol, TableColumn<Person, String> lastNameCol, TextArea inputTextArea) {
+    void findRichest(ObservableList<Person> personData, SortedList<Person> sortedData, TextArea inputTextArea) {
         personData.sort(Comparator.comparing(Person::getWage));
 
         sortedData.forEach((Person Person) -> {
@@ -25,7 +23,7 @@ public class Sort {
         }
 
     //Finds youngest pearson
-    void findYoungest(ObservableList<Person> personData, SortedList<Person> sortedData, TableColumn<Person, String> firstNameCol, TableColumn<Person, String> lastNameCol, TextArea inputTextArea) {
+    void findYoungest(ObservableList<Person> personData, SortedList<Person> sortedData, TextArea inputTextArea) {
         personData.sort(Comparator.comparing(Person::getAge).reversed());
 
         sortedData.forEach((Person Person) -> {
@@ -48,7 +46,8 @@ public class Sort {
         inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " is: " + ageNumber + "");
     }
 
-    void sortByFirstName(ObservableList<Person> personData, TableView<Person> table, SortedList<Person> sortedData, TextArea inputTextArea) {
+    //Sort people by first name
+    void sortByFirstName(ObservableList<Person> personData, SortedList<Person> sortedData, TextArea inputTextArea) {
         personData.sort(Comparator.comparing(Person::getFirstName));
 
         sortedData.forEach((Person Person) -> firstNames += Person.getFirstName() + "\n");
