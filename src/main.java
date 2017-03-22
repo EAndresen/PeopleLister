@@ -21,13 +21,10 @@ public class main extends Application {
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(10, 10, 10, 10));
+        gridPane.setPadding(new Insets(0, 10, 10, 10));
 
         //Loading table to main grid
-        controller.loadTable(gridPane);
-
-        //Loading top bar to main grid.
-        controller.loadTopBar(root);
+        controller.loadTable(gridPane, root);
 
         //Setting title and main stage.
         root.setCenter(gridPane);

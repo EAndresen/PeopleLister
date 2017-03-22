@@ -11,19 +11,23 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.util.Comparator;
 
 class Controller {
+    private Sort sort = new Sort();
+    private TopBar topBarClass = new TopBar();
+
     private TableView<Person> table = new TableView<>();
     private TextField filterField = new TextField();
     private TextArea inputTextArea = new TextArea();
     private HBox topBar = new HBox();
+    private Label searchLabel = new Label("Search:");
     private Button findOldestButton = new Button("Find oldest");
     private Button findYoungestButton = new Button("Find youngest");
     private Button findRichestButton = new Button("Find richest");
     private Button sortByNameButton = new Button("Sort by first name");
-    private String firstNames = "";
 
     private final ObservableList<Person> personData =
             FXCollections.observableArrayList(
@@ -37,7 +41,9 @@ class Controller {
     private FilteredList<Person> filteredData = new FilteredList<>(personData, p -> true);
     private SortedList<Person> sortedData = new SortedList<>(filteredData);
 
-    void loadTable(GridPane gridPane) {
+
+
+    void loadTable(GridPane gridPane, BorderPane root) {
 
         //First name column
         TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("First Name");
@@ -58,7 +64,7 @@ class Controller {
                 new PropertyValueFactory<Person, String>("profession"));
 
         //wage column
-        TableColumn<Person, Integer> wageCol = new TableColumn<Person, Integer>("wage");
+        TableColumn<Person, Integer> wageCol = new TableColumn<Person, Integer>("Wage");
         wageCol.setMinWidth(100);
         wageCol.setCellValueFactory(
                 new PropertyValueFactory<Person, Integer>("wage"));
@@ -75,16 +81,8 @@ class Controller {
         skillsCol.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("skills"));
 
-        //Tern off column sorting in UI
-        firstNameCol.setSortable(false);
-        lastNameCol.setSortable(false);
-        professionCol.setSortable(false);
-        wageCol.setSortable(false);
-        ageCol.setSortable(false);
-        skillsCol.setSortable(false);
 
         //Filtering from text input
-
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(person -> {
                 // If filter text is empty, display all persons.
@@ -115,68 +113,17 @@ class Controller {
         });
 
         //Sort people by name, store them and print to inputTextArea.
-        sortByNameButton.setOnAction((ActionEvent event) -> {
-            personData.sort(Comparator.comparing(Person::getFirstName));
-            table.setItems(sortedData);
-
-            sortedData.forEach((Person Person) -> firstNames += Person.getFirstName() + "\n");
-            inputTextArea.setText(firstNames);
-            firstNames = "";
-        });
+        sortByNameButton.setOnAction(event -> sort.sortByFirstName(personData, table, sortedData, inputTextArea));
 
         //Finds oldest pearson
-        findOldestButton.setOnAction(event -> {
-            SortedList<Person> sortedByAgeOld = new SortedList<Person>(sortedData, (Person age1, Person age2) -> {
-                if (age1.getAge() < age2.getAge()) {
-                    return 1;
-                } else if (age1.getAge() > age2.getAge()) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
-            table.setItems(sortedByAgeOld);
+        findOldestButton.setOnAction(event -> sort.findOldest(personData, sortedData, inputTextArea));
 
-            String oldestPearsonFirstName = firstNameCol.getCellData(0);
-            String oldestPearsonLastName = lastNameCol.getCellData(0);
-            inputTextArea.setText("Oldest pearson is: " + oldestPearsonFirstName + " " + oldestPearsonLastName);
-        });
 
         //Finds youngest pearson
-        findYoungestButton.setOnAction(event -> {
-            SortedList<Person> sortedByAgeYoung = new SortedList<Person>(sortedData, (Person age1, Person age2) -> {
-                if (age1.getAge() > age2.getAge()) {
-                    return 1;
-                } else if (age1.getAge() < age2.getAge()) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
-            table.setItems(sortedByAgeYoung);
+        findYoungestButton.setOnAction(event -> sort.findYoungest(personData, sortedData, firstNameCol, lastNameCol, inputTextArea));
 
-            String youngestPearsonFirstName = firstNameCol.getCellData(0);
-            String youngestPearsonLastName = lastNameCol.getCellData(0);
-            inputTextArea.setText("Youngest pearson is: " + youngestPearsonFirstName + " " + youngestPearsonLastName);
-        });
-
-        //Finds richest pearson
-        findRichestButton.setOnAction(event -> {
-            SortedList<Person> sortedByWage = new SortedList<Person>(sortedData, (Person wage1, Person wage2) -> {
-                if (wage1.getWage() < wage2.getWage()) {
-                    return 1;
-                } else if (wage1.getWage() > wage2.getWage()) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
-            table.setItems(sortedByWage);
-
-            String richestPearsonFirstName = firstNameCol.getCellData(0);
-            String richestPearsonLastName = lastNameCol.getCellData(0);
-            inputTextArea.setText("Richest pearson is: " + richestPearsonFirstName + " " + richestPearsonLastName);
-        });
+        //Find richest pearson
+        findRichestButton.setOnAction(event -> sort.findRichest(personData, sortedData, firstNameCol, lastNameCol, inputTextArea));
 
         //Collecting nodes and placing the table on the grid
         table.getColumns().addAll(firstNameCol, lastNameCol, professionCol, wageCol, ageCol, skillsCol);
@@ -184,21 +131,11 @@ class Controller {
         table.setItems(personData);
         inputTextArea.setFont(Font.font(15));
 
+        //Load top bar
+        topBarClass.loadTopBar(root, findYoungestButton, findOldestButton, findRichestButton, sortByNameButton, searchLabel, filterField, topBar);
+
         //Add nodes to the grid
         gridPane.add(table, 0, 1);
-        gridPane.add(filterField, 0, 0);
         gridPane.add(inputTextArea, 0, 2);
-    }
-
-    //Function to load top border
-    void loadTopBar(BorderPane root) {
-        //Setting up the top border
-        topBar.setSpacing(5);
-        topBar.setPadding(new Insets(10, 10, 0, 10));
-        topBar.setAlignment(Pos.CENTER);
-        topBar.getChildren().addAll(findOldestButton, findYoungestButton, findRichestButton, sortByNameButton);
-
-        //Placing it on the grid
-        root.setTop(topBar);
     }
 }
