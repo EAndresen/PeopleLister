@@ -22,7 +22,7 @@ class Controller {
     private Button sortByNameButton = new Button("Sort by first name");
 
     //Create list to hold Person's and fill with data
-    private ObservableList<Person> personData = FXCollections.observableArrayList(
+    private final ObservableList<Person> personData = FXCollections.observableArrayList(
             new Person("Eric", "Andresen", "Student", 5, 26, "Blue sky enthusiast"),
             new Person("Zlatan", "Ibrahimovic", "Football player", 137280000, 35, "Professional ball kicker"),
             new Person("Carl XIV Gustaf", "Bernadotte", "King", 13400000, 70, "To role"),
