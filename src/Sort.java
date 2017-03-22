@@ -19,7 +19,7 @@ public class Sort {
             oldestPearsonFirstName = Person.getFirstName();
             oldestPearsonLastName = Person.getLastName();
         });
-        inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " wage: " + wageNumber + "");
+        inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " have highest income: " + wageNumber + " SEK/month");
         }
 
     //Finds youngest pearson
@@ -31,7 +31,7 @@ public class Sort {
             oldestPearsonFirstName = Person.getFirstName();
             oldestPearsonLastName = Person.getLastName();
         });
-        inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " is: " + ageNumber + "");
+        inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " is youngest and : " + ageNumber + " years old.");
         }
 
     //Finds oldest pearson
@@ -43,7 +43,7 @@ public class Sort {
             oldestPearsonFirstName = Person.getFirstName();
             oldestPearsonLastName = Person.getLastName();
         });
-        inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " is: " + ageNumber + "");
+        inputTextArea.setText(oldestPearsonFirstName + " " + oldestPearsonLastName + " is oldest and: " + ageNumber + " years old.");
     }
 
     //Sort people by first name

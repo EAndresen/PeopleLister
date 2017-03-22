@@ -18,7 +18,7 @@ public class main extends Application {
         //Create main frame and scene
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 762, 450, Color.LIGHTGRAY);
-        scene.getStylesheets().add("style.css");
+        scene.getStylesheets().add("/resources/style.css");
         root.setId("root");
 
         //Create main grid

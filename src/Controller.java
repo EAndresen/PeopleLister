@@ -23,7 +23,7 @@ class Controller {
 
     //Create list to hold Person's and fill with data
     private final ObservableList<Person> personData = FXCollections.observableArrayList(
-            new Person("Eric", "Andresen", "Student", 5, 26, "Blue sky enthusiast"),
+            new Person("Eric", "Andresen", "Student", 5000, 26, "Blue sky enthusiast"),
             new Person("Zlatan", "Ibrahimovic", "Football player", 137280000, 35, "Professional ball kicker"),
             new Person("Carl XIV Gustaf", "Bernadotte", "King", 13400000, 70, "To role"),
             new Person("Bob", "Dylan", "Singer-songwriter, artist, writer", 8330000, 75, "Singing, guitar, harmonica, keyboard "),
