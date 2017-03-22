@@ -15,10 +15,13 @@ public class main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        //Creating main grid and setting height and with.
+        //Create main frame and scene
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 762, 450, Color.LIGHTGRAY);
+        scene.getStylesheets().add("style.css");
+        root.setId("root");
+
+        //Create main grid
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);

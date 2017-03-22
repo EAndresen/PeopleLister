@@ -52,9 +52,7 @@ public class Table {
 
         //Collecting nodes and placing the table on the grid
         table.getColumns().addAll(firstNameCol, lastNameCol, professionCol, wageCol, ageCol, skillsCol);
-        table.setMaxHeight(250);
         table.setItems(personData);
-        inputTextArea.setFont(Font.font(15));
 
         //Add table to grid
         gridPane.add(table, 0, 1);
@@ -88,5 +86,13 @@ public class Table {
             sortedData.comparatorProperty().bind(table.comparatorProperty());
             table.setItems(sortedData);
         });
+
+        //Lock table from manual sorting.
+        firstNameCol.setSortable(false);
+        lastNameCol.setSortable(false);
+        professionCol.setSortable(false);
+        wageCol.setSortable(false);
+        ageCol.setSortable(false);
+        skillsCol.setSortable(false);
     }
 }
